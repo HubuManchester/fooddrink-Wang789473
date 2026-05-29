@@ -3,12 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|c:\\users\\86155\\source\\repos\\fooddrinkapp\\fooddrinkapp\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|solutionrelative:fooddrinkapp\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|c:\\users\\86155\\source\\repos\\fooddrinkapp\\fooddrinkapp\\fooddrinkapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|solutionrelative:fooddrinkapp\\fooddrinkapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|c:\\users\\86155\\source\\repos\\fooddrinkapp\\fooddrinkapp\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|solutionrelative:fooddrinkapp\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|c:\\users\\86155\\source\\repos\\fooddrinkapp\\fooddrinkapp\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|solutionrelative:fooddrinkapp\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|c:\\users\\86155\\source\\repos\\fooddrinkapp\\fooddrinkapp\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|solutionrelative:fooddrinkapp\\mauiprogram.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|c:\\users\\86155\\source\\repos\\fooddrinkapp\\fooddrinkapp\\models\\meal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|solutionrelative:fooddrinkapp\\models\\meal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|c:\\users\\86155\\source\\repos\\fooddrinkapp\\fooddrinkapp\\services\\mealapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|solutionrelative:fooddrinkapp\\services\\mealapiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|c:\\users\\86155\\source\\repos\\fooddrinkapp\\fooddrinkapp\\platforms\\android\\androidmanifest.xml||{4E01A4BC-CFCF-452C-8C08-51352512D197}",
+      "RelativeMoniker": "D:0:0:{5811653D-064A-446D-8059-95821F0E75F8}|FoodDrinkApp\\FoodDrinkApp.csproj|solutionrelative:fooddrinkapp\\platforms\\android\\androidmanifest.xml||{4E01A4BC-CFCF-452C-8C08-51352512D197}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,8 +38,83 @@
       "DocumentGroups": [
         {
           "DockedHeight": 373,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MauiProgram.cs",
+              "DocumentMoniker": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\MauiProgram.cs",
+              "RelativeDocumentMoniker": "FoodDrinkApp\\MauiProgram.cs",
+              "ToolTip": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\MauiProgram.cs",
+              "RelativeToolTip": "FoodDrinkApp\\MauiProgram.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-29T09:37:12.277Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MealApiService.cs",
+              "DocumentMoniker": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\Services\\MealApiService.cs",
+              "RelativeDocumentMoniker": "FoodDrinkApp\\Services\\MealApiService.cs",
+              "ToolTip": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\Services\\MealApiService.cs",
+              "RelativeToolTip": "FoodDrinkApp\\Services\\MealApiService.cs",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAqwHkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-29T09:28:54.75Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Meal.cs",
+              "DocumentMoniker": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\Models\\Meal.cs",
+              "RelativeDocumentMoniker": "FoodDrinkApp\\Models\\Meal.cs",
+              "ToolTip": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\Models\\Meal.cs",
+              "RelativeToolTip": "FoodDrinkApp\\Models\\Meal.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAwwB0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-29T09:27:40.459Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AndroidManifest.xml",
+              "DocumentMoniker": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\Platforms\\Android\\AndroidManifest.xml",
+              "RelativeDocumentMoniker": "FoodDrinkApp\\Platforms\\Android\\AndroidManifest.xml",
+              "ToolTip": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\Platforms\\Android\\AndroidManifest.xml",
+              "RelativeToolTip": "FoodDrinkApp\\Platforms\\Android\\AndroidManifest.xml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2026-05-29T09:23:28.077Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "FoodDrinkApp.csproj",
+              "DocumentMoniker": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\FoodDrinkApp.csproj",
+              "RelativeDocumentMoniker": "FoodDrinkApp\\FoodDrinkApp.csproj",
+              "ToolTip": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\FoodDrinkApp.csproj",
+              "RelativeToolTip": "FoodDrinkApp\\FoodDrinkApp.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-05-29T09:11:09.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\MainPage.xaml",
+              "RelativeDocumentMoniker": "FoodDrinkApp\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\MainPage.xaml",
+              "RelativeToolTip": "FoodDrinkApp\\MainPage.xaml",
+              "ViewState": "AgIAAJIAAAAAAAAAAAAAAJIAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-29T09:09:14.754Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -28,22 +123,9 @@
               "RelativeDocumentMoniker": "FoodDrinkApp\\MainPage.xaml.cs",
               "ToolTip": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\MainPage.xaml.cs",
               "RelativeToolTip": "FoodDrinkApp\\MainPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAAwMYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-29T08:53:51.721Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainPage.xaml",
-              "DocumentMoniker": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\MainPage.xaml",
-              "RelativeDocumentMoniker": "FoodDrinkApp\\MainPage.xaml",
-              "ToolTip": "C:\\Users\\86155\\source\\repos\\FoodDrinkApp\\FoodDrinkApp\\MainPage.xaml*",
-              "RelativeToolTip": "FoodDrinkApp\\MainPage.xaml*",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAAAE8AAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2026-05-29T08:53:35.687Z",
               "EditorCaption": ""
             }
           ]

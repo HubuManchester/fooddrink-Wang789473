@@ -2,77 +2,144 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FoodDrinkApp.MainPage"
-             Title="Food and Drink">
+             Title="Food &amp; Drink">
 
     <ScrollView>
         <VerticalStackLayout 
-            Spacing="20"
-            Padding="30"
+            Spacing="15"
+            Padding="20"
             VerticalOptions="Center">
 
-            <Frame 
-                CornerRadius="20"
-                BackgroundColor="#FF6B35"
-                Padding="20">
-                <Label 
-                    Text="🍔 Food and Drink"
-                    FontSize="28"
-                    FontAttributes="Bold"
-                    TextColor="White"
-                    HorizontalOptions="Center"/>
+            <!-- Title -->
+            <Label Text="Food &amp; Drink" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center"/>
+
+            <!-- Compass Section -->
+            <Frame CornerRadius="20"
+                   BackgroundColor="#FFF3E0"
+                   Padding="15">
+                <VerticalStackLayout>
+                    <Label Text="Compass Menu"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"/>
+
+                    <Grid RowDefinitions="Auto,Auto"
+                          ColumnDefinitions="*,*,*"
+                          HorizontalOptions="Center"
+                          RowSpacing="5"
+                          ColumnSpacing="15"
+                          Margin="0,10,0,0">
+
+                        <Label Grid.Row="0" Grid.Column="1"
+                               Text="N"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="Red"
+                               HorizontalOptions="Center"/>
+
+                        <Label Grid.Row="1" Grid.Column="0"
+                               Text="W"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+
+                        <Label Grid.Row="1" Grid.Column="1"
+                               x:Name="CompassArrow"
+                               Text="↑"
+                               FontSize="32"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+
+                        <Label Grid.Row="1" Grid.Column="2"
+                               Text="E"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+
+                        <Label Grid.Row="2" Grid.Column="1"
+                               Text="S"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"/>
+                    </Grid>
+
+                    <Label x:Name="DirectionLabel"
+                           Text="Facing: North"
+                           FontSize="14"
+                           TextColor="Gray"
+                           HorizontalOptions="Center"
+                           Margin="0,10,0,0"/>
+
+                    <Label x:Name="CuisineLabel"
+                           Text="Current: Chinese"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="#FF6B35"
+                           Margin="0,5,0,0"/>
+                </VerticalStackLayout>
             </Frame>
 
-            <Label 
-                Text="Explore the joy of food"
-                FontSize="18"
-                TextColor="Gray"
-                HorizontalOptions="Center"/>
+            <!-- Recipe List -->
+            <Label Text="Recommended Dishes"
+                   FontSize="16"
+                   FontAttributes="Bold"/>
 
-            <BoxView 
-                HeightRequest="1"
-                Color="LightGray"/>
+            <CollectionView x:Name="MealsListView"
+                            HeightRequest="350"
+                            SelectionMode="Single"
+                            SelectionChanged="OnMealSelected">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10"
+                               BorderColor="#E0E0E0"
+                               Padding="10"
+                               Margin="0,5">
+                            <HorizontalStackLayout Spacing="15">
+                                <Image Source="{Binding ImageUrl}"
+                                       HeightRequest="60"
+                                       WidthRequest="60"
+                                       Aspect="AspectFill"
+                                       HorizontalOptions="Start"/>
+                                <Label Text="{Binding Name}"
+                                       FontSize="16"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="StartAndExpand"/>
+                            </HorizontalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-            <VerticalStackLayout Spacing="15">
+            <!-- Buttons -->
+            <HorizontalStackLayout Spacing="10">
+                <Button Text="Shake"
+                        Clicked="OnShakeButton"
+                        BackgroundColor="#FF9800"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HorizontalOptions="FillAndExpand"/>
 
-                <Label 
-                    Text="✨ Menu"
-                    FontSize="20"
-                    FontAttributes="Bold"/>
+                <Button Text="Camera"
+                        Clicked="OnCameraButton"
+                        BackgroundColor="#4CAF50"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HorizontalOptions="FillAndExpand"/>
+            </HorizontalStackLayout>
 
-                <Button 
-                    Text="🍕 Daily Recommendation"
-                    BackgroundColor="#FF6B35"
-                    CornerRadius="15"
-                    HeightRequest="55"
-                    Clicked="OnRecommendClicked"/>
-
-                <Button 
-                    Text="📷 Take Food Photo"
-                    BackgroundColor="#4CAF50"
-                    CornerRadius="15"
-                    HeightRequest="55"
-                    Clicked="OnCameraClicked"/>
-
-                <Button 
-                    Text="🔊 Voice Assistant"
-                    BackgroundColor="#2196F3"
-                    CornerRadius="15"
-                    HeightRequest="55"
-                    Clicked="OnSpeakClicked"/>
-
-            </VerticalStackLayout>
-
-            <Frame 
-                CornerRadius="15"
-                BorderColor="#FF6B35"
-                Padding="15">
-                <Label 
-                    x:Name="StatusLabel"
-                    Text="Click a button to start"
-                    FontSize="14"
-                    TextColor="Gray"
-                    HorizontalOptions="Center"/>
-            </Frame>
+            <!-- Status -->
+            <Label x:Name="StatusLabel" 
+                   Text="Ready"
+                   FontSize="12"
+                   TextColor="Gray"
+                   HorizontalOptions="Center"/>
 
         </VerticalStackLayout>
     </ScrollView>
