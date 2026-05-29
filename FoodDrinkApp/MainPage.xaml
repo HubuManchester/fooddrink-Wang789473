@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDrinkApp.MainPage"
+             Title="Food and Drink">
+
+    <ScrollView>
+        <VerticalStackLayout 
+            Spacing="20"
+            Padding="30"
+            VerticalOptions="Center">
+
+            <Frame 
+                CornerRadius="20"
+                BackgroundColor="#FF6B35"
+                Padding="20">
+                <Label 
+                    Text="🍔 Food and Drink"
+                    FontSize="28"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    HorizontalOptions="Center"/>
+            </Frame>
+
+            <Label 
+                Text="Explore the joy of food"
+                FontSize="18"
+                TextColor="Gray"
+                HorizontalOptions="Center"/>
+
+            <BoxView 
+                HeightRequest="1"
+                Color="LightGray"/>
+
+            <VerticalStackLayout Spacing="15">
+
+                <Label 
+                    Text="✨ Menu"
+                    FontSize="20"
+                    FontAttributes="Bold"/>
+
+                <Button 
+                    Text="🍕 Daily Recommendation"
+                    BackgroundColor="#FF6B35"
+                    CornerRadius="15"
+                    HeightRequest="55"
+                    Clicked="OnRecommendClicked"/>
+
+                <Button 
+                    Text="📷 Take Food Photo"
+                    BackgroundColor="#4CAF50"
+                    CornerRadius="15"
+                    HeightRequest="55"
+                    Clicked="OnCameraClicked"/>
+
+                <Button 
+                    Text="🔊 Voice Assistant"
+                    BackgroundColor="#2196F3"
+                    CornerRadius="15"
+                    HeightRequest="55"
+                    Clicked="OnSpeakClicked"/>
+
+            </VerticalStackLayout>
+
+            <Frame 
+                CornerRadius="15"
+                BorderColor="#FF6B35"
+                Padding="15">
+                <Label 
+                    x:Name="StatusLabel"
+                    Text="Click a button to start"
+                    FontSize="14"
+                    TextColor="Gray"
+                    HorizontalOptions="Center"/>
+            </Frame>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
