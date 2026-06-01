@@ -41,6 +41,7 @@ public partial class MainPage : ContentPage
             {
                 Compass.Default.ReadingChanged += OnCompassReadingChanged;
                 Compass.Default.Start(SensorSpeed.UI);
+                StatusLabel.Text = "Compass ready";
             }
             else
             {
@@ -97,7 +98,9 @@ public partial class MainPage : ContentPage
                 _meals.Add(meal);
             }
 
-            StatusLabel.Text = $"Showing {_meals.Count} {cuisine} dishes";
+            StatusLabel.Text = _meals.Count > 0
+                ? $"Showing {_meals.Count} {cuisine} dishes"
+                : $"No dishes found for {cuisine}";
         }
         catch (Exception ex)
         {
@@ -105,21 +108,39 @@ public partial class MainPage : ContentPage
         }
     }
 
-    private async void OnMealSelected(object? sender, SelectionChangedEventArgs e)
+    // ========== Tap Gesture for Meal Selection ==========
+    private async void OnMealTapped(object sender, EventArgs e)
     {
-        if (e.CurrentSelection.FirstOrDefault() is Meal selected)
+        var frame = sender as Frame;
+        var meal = frame?.BindingContext as Meal;
+        if (meal != null)
         {
-            StatusLabel.Text = $"Selected: {selected.Name}";
-
-            if (!string.IsNullOrEmpty(selected.Instructions))
-            {
-                var shortInstructions = selected.Instructions.Length > 200
-                    ? selected.Instructions.Substring(0, 200) + "..."
-                    : selected.Instructions;
-                await DisplayAlert(selected.Name, shortInstructions, "OK");
-            }
+            StatusLabel.Text = $"Opening: {meal.Name}";
+            await Navigation.PushAsync(new RecipePage(meal));
         }
-        ((CollectionView)sender).SelectedItem = null;
+    }
+
+    // ========== Random and Menu Buttons ==========
+    private async void OnRandomButtonClicked(object sender, EventArgs e)
+    {
+        StatusLabel.Text = "Getting random recipe...";
+
+        var randomMeal = await _apiService.GetRandomMeal();
+        if (randomMeal != null && randomMeal.Name != null)
+        {
+            await Navigation.PushAsync(new RecipePage(randomMeal));
+            StatusLabel.Text = $"Random: {randomMeal.Name}";
+        }
+        else
+        {
+            StatusLabel.Text = "Failed to get random recipe";
+            await DisplayAlert("Error", "Unable to fetch random recipe. Please check your network connection.", "OK");
+        }
+    }
+
+    private void OnMenuButtonClicked(object sender, EventArgs e)
+    {
+        StatusLabel.Text = "Menu ready";
     }
 
     // ========== Hardware 2: Accelerometer / Shake ==========
@@ -158,16 +179,13 @@ public partial class MainPage : ContentPage
             var randomMeal = await _apiService.GetRandomMeal();
             if (randomMeal != null && randomMeal.Name != null)
             {
-                await DisplayAlert("Random Recipe",
-                    $"Today's recommendation: {randomMeal.Name}\n\n" +
-                    $"Cuisine: {randomMeal.Area ?? "Unknown"}\n" +
-                    $"Category: {randomMeal.Category ?? "N/A"}",
-                    "Let's Cook!");
+                await Navigation.PushAsync(new RecipePage(randomMeal));
                 StatusLabel.Text = $"Random: {randomMeal.Name}";
             }
             else
             {
                 StatusLabel.Text = "Failed to get random recipe";
+                await DisplayAlert("Error", "Unable to fetch random recipe. Please check your network connection.", "OK");
             }
         });
     }
@@ -179,21 +197,118 @@ public partial class MainPage : ContentPage
         var randomMeal = await _apiService.GetRandomMeal();
         if (randomMeal != null && randomMeal.Name != null)
         {
-            await DisplayAlert("Random Recipe",
-                $"Today's recommendation: {randomMeal.Name}\n\n" +
-                $"Cuisine: {randomMeal.Area ?? "Unknown"}\n" +
-                $"Category: {randomMeal.Category ?? "N/A"}",
-                "Yummy!");
+            await Navigation.PushAsync(new RecipePage(randomMeal));
             StatusLabel.Text = $"Random: {randomMeal.Name}";
         }
         else
         {
             StatusLabel.Text = "Failed to get random recipe";
+            await DisplayAlert("Error", "Unable to fetch random recipe. Please check your network connection.", "OK");
         }
     }
 
-    private void OnCameraButton(object? sender, EventArgs e)
+    // ========== Hardware 3: Text-to-Speech ==========
+    private async void OnSpeakButton(object sender, EventArgs e)
     {
-        StatusLabel.Text = "Camera feature coming soon!";
+        try
+        {
+            if (_meals.Count > 0)
+            {
+                var firstMeal = _meals[0];
+                string textToSpeak = $"{firstMeal.Name}. " +
+                                     $"This is a {firstMeal.Category ?? "delicious"} dish. " +
+                                     $"Enjoy your meal!";
+
+                await TextToSpeech.Default.SpeakAsync(textToSpeak);
+                StatusLabel.Text = $"Speaking: {firstMeal.Name}";
+            }
+            else
+            {
+                StatusLabel.Text = "No dishes to speak";
+                await TextToSpeech.Default.SpeakAsync("No dishes available");
+            }
+        }
+        catch (Exception ex)
+        {
+            StatusLabel.Text = $"TTS error: {ex.Message}";
+            await DisplayAlert("Error", "Text to speech is not available on this device.", "OK");
+        }
+    }
+
+    // ========== Hardware 4: Camera ==========
+    private async void OnCameraButton(object? sender, EventArgs e)
+    {
+        try
+        {
+            var status = await Permissions.CheckStatusAsync<Permissions.Camera>();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.Camera>();
+                if (status != PermissionStatus.Granted)
+                {
+                    StatusLabel.Text = "Camera permission denied";
+                    await DisplayAlert("Permission", "Camera permission is required to take photos", "OK");
+                    return;
+                }
+            }
+
+            StatusLabel.Text = "Opening camera...";
+
+            var photo = await PhotoService.TakePhotoAsync();
+            if (photo != null)
+            {
+                var fileName = $"food_photo_{DateTime.Now.Ticks}.jpg";
+                var savedPath = await PhotoService.SavePhotoAsync(photo, fileName);
+
+                if (savedPath != null)
+                {
+                    StatusLabel.Text = $"Photo saved!";
+                    await DisplayAlert("Success", "Your food photo has been saved successfully!", "Great!");
+                }
+                else
+                {
+                    StatusLabel.Text = "Failed to save photo";
+                    await DisplayAlert("Error", "Failed to save the photo. Storage may be unavailable.", "OK");
+                }
+            }
+            else
+            {
+                StatusLabel.Text = "Camera cancelled or not available";
+                await DisplayAlert("Info", "Camera may not be available in emulator. Please test on a physical device.", "OK");
+            }
+        }
+        catch (Exception ex)
+        {
+            StatusLabel.Text = $"Camera error: {ex.Message}";
+            await DisplayAlert("Camera Error", "Unable to access camera. Please check permissions.", "OK");
+        }
+    }
+
+    // ========== Hardware 5: GPS / Location ==========
+    private async void OnLocationButtonClicked(object sender, EventArgs e)
+    {
+        try
+        {
+            StatusLabel.Text = "Getting location...";
+
+            // 使用模拟位置（不需要真实GPS）
+            var mockLocation = LocationService.GetMockLocation();
+
+            await DisplayAlert("Nearby Restaurants",
+                $"📍 Found these places near you:\n\n" +
+                $"• {mockLocation}\n" +
+                $"• 🍣 Sushi Restaurant\n" +
+                $"• 🥘 Thai Cuisine\n" +
+                $"• 🍝 Italian Bistro\n\n" +
+                $"Note: Using demo mode - showing mock data",
+                "OK");
+
+            StatusLabel.Text = "Location: Demo mode";
+        }
+        catch (Exception ex)
+        {
+            StatusLabel.Text = $"Location error: {ex.Message}";
+            await DisplayAlert("Info", "Using demo location data. No GPS required.", "OK");
+        }
     }
 }

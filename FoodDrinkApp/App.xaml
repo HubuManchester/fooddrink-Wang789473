@@ -1,4 +1,4 @@
-﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:FoodDrinkApp"
@@ -9,6 +9,28 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <!-- Dark Mode Support -->
+            <Color x:Key="PrimaryColor">#FF6B35</Color>
+            <Color x:Key="PrimaryDarkColor">#E55A2B</Color>
+            <Color x:Key="BackgroundColorLight">#FFFFFF</Color>
+            <Color x:Key="BackgroundColorDark">#1E1E1E</Color>
+            <Color x:Key="TextColorLight">#000000</Color>
+            <Color x:Key="TextColorDark">#FFFFFF</Color>
+            <Color x:Key="FrameBackgroundLight">#FFFFFF</Color>
+            <Color x:Key="FrameBackgroundDark">#2D2D2D</Color>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource TextColorLight}, Dark={StaticResource TextColorDark}}" />
+            </Style>
+
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource FrameBackgroundLight}, Dark={StaticResource FrameBackgroundDark}}" />
+            </Style>
+
+            <Style TargetType="Page">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource BackgroundColorLight}, Dark={StaticResource BackgroundColorDark}}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

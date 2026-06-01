@@ -27,4 +27,7 @@ public class Meal
 
     [JsonPropertyName("strMealThumb")]
     public string? ImageUrl { get; set; }
+
+    // 食材列表（从 API 解析）
+    public List<string>? Ingredients { get; set; }
 }
