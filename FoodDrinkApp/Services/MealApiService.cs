@@ -28,8 +28,11 @@ public class MealApiService
         { "Pizza", "pizza.jpg" },
         { "Pasta", "pasta.jpg" },
         { "Taco", "taco.png" },
-        { "Burrito", "burrito.jpg" },
-
+        { "Burrito", "burrito.png" },
+        // Add more mappings as needed
+        { "Golabki (cabbage roll)", "golabki.jpg" },
+        { "Palidah", "palidah.jpg" },
+        { "Roaf", "roaf.jpg" }
     };
 
     public MealApiService()
@@ -88,12 +91,12 @@ public class MealApiService
             var result = JsonSerializer.Deserialize<MealResponse>(json);
             var meal = result?.Meals?.FirstOrDefault();
 
-            // If API returned meal but no image, set local image
             if (meal != null)
             {
                 // Parse ingredients
                 meal.Ingredients = ExtractIngredients(json);
 
+                // Use local image if API image is not available
                 if (string.IsNullOrEmpty(meal.ImageUrl))
                 {
                     meal.ImageUrl = GetLocalImagePath(meal.Name);
@@ -108,7 +111,7 @@ public class MealApiService
         }
     }
 
-    // Get random meal (for shake feature)
+    // Get random meal (for shake feature) - uses local images
     public async Task<Meal?> GetRandomMeal()
     {
         try
@@ -118,21 +121,20 @@ public class MealApiService
             var result = JsonSerializer.Deserialize<MealResponse>(json);
             var meal = result?.Meals?.FirstOrDefault();
 
-            // Set local image and ingredients for random meal
             if (meal != null)
             {
+                // Parse ingredients
                 meal.Ingredients = ExtractIngredients(json);
 
-                if (string.IsNullOrEmpty(meal.ImageUrl))
-                {
-                    meal.ImageUrl = GetLocalImagePath(meal.Name);
-                }
+                // Force use local image for random meals (most reliable)
+                meal.ImageUrl = GetLocalImagePath(meal.Name);
             }
 
             return meal;
         }
-        catch
+        catch (Exception ex)
         {
+            System.Diagnostics.Debug.WriteLine($"Random meal error: {ex.Message}");
             return null;
         }
     }
@@ -174,7 +176,7 @@ public class MealApiService
 
         return _localImageMap.ContainsKey(dishName)
             ? _localImageMap[dishName]
-            : "default_food.png";
+            : "default_food.png";  // Return default image if not found
     }
 
     // Mock data when API fails (with local images)

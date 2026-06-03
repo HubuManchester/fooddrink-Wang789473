@@ -22,6 +22,12 @@ build_property.CsWinRTUseWindowsUIXamlProjections = false
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/86155/source/repos/FoodDrinkApp/FoodDrinkApp/AddItemPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = FoodDrinkApp.AddItemPage.xaml
+build_metadata.AdditionalFiles.TargetPath = AddItemPage.xaml
+build_metadata.AdditionalFiles.RelativePath = AddItemPage.xaml
+
 [C:/Users/86155/source/repos/FoodDrinkApp/FoodDrinkApp/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = FoodDrinkApp.App.xaml
@@ -34,11 +40,41 @@ build_metadata.AdditionalFiles.ManifestResourceName = FoodDrinkApp.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
+[C:/Users/86155/source/repos/FoodDrinkApp/FoodDrinkApp/CategoriesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = FoodDrinkApp.CategoriesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = CategoriesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = CategoriesPage.xaml
+
+[C:/Users/86155/source/repos/FoodDrinkApp/FoodDrinkApp/FavoritesPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = FoodDrinkApp.FavoritesPage.xaml
+build_metadata.AdditionalFiles.TargetPath = FavoritesPage.xaml
+build_metadata.AdditionalFiles.RelativePath = FavoritesPage.xaml
+
+[C:/Users/86155/source/repos/FoodDrinkApp/FoodDrinkApp/FoodDetailPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = FoodDrinkApp.FoodDetailPage.xaml
+build_metadata.AdditionalFiles.TargetPath = FoodDetailPage.xaml
+build_metadata.AdditionalFiles.RelativePath = FoodDetailPage.xaml
+
+[C:/Users/86155/source/repos/FoodDrinkApp/FoodDrinkApp/HardwarePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = FoodDrinkApp.HardwarePage.xaml
+build_metadata.AdditionalFiles.TargetPath = HardwarePage.xaml
+build_metadata.AdditionalFiles.RelativePath = HardwarePage.xaml
+
 [C:/Users/86155/source/repos/FoodDrinkApp/FoodDrinkApp/MainPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = FoodDrinkApp.MainPage.xaml
 build_metadata.AdditionalFiles.TargetPath = MainPage.xaml
 build_metadata.AdditionalFiles.RelativePath = MainPage.xaml
+
+[C:/Users/86155/source/repos/FoodDrinkApp/FoodDrinkApp/RecipeDetailPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = FoodDrinkApp.RecipeDetailPage.xaml
+build_metadata.AdditionalFiles.TargetPath = RecipeDetailPage.xaml
+build_metadata.AdditionalFiles.RelativePath = RecipeDetailPage.xaml
 
 [C:/Users/86155/source/repos/FoodDrinkApp/FoodDrinkApp/RecipePage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
@@ -57,3 +93,15 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = FoodDrinkApp.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/Users/86155/source/repos/FoodDrinkApp/FoodDrinkApp/SettingsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = FoodDrinkApp.SettingsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = SettingsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = SettingsPage.xaml
+
+[C:/Users/86155/source/repos/FoodDrinkApp/FoodDrinkApp/StatisticsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = FoodDrinkApp.StatisticsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = StatisticsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = StatisticsPage.xaml

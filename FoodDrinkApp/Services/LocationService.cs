@@ -49,7 +49,6 @@ public static class LocationService
     // Mock location for demo (不用真实GPS)
     public static string GetMockLocation()
     {
-        // 模拟一个餐厅位置
         var random = new Random();
         var mockLocations = new[]
         {

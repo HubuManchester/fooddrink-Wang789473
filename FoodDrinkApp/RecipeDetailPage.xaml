@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDrinkApp.RecipeDetailPage"
+             Title="Recipe Details"
+             BackgroundColor="{AppThemeBinding Light=#F0FDF4, Dark=#0F172A}">
+
+    <ContentPage.Resources>
+        <Style x:Key="SectionTitle" TargetType="Label">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="{AppThemeBinding Light=#00695C, Dark=#10B981}"/>
+            <Setter Property="Margin" Value="0,16,0,12"/>
+        </Style>
+
+        <Style x:Key="ActionButton" TargetType="Button">
+            <Setter Property="CornerRadius" Value="25"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
+            <!-- 大图区域 -->
+            <Grid HeightRequest="300">
+                <Image x:Name="MealImage"
+                       Aspect="AspectFill"
+                       HeightRequest="300"
+                       Source="dotnet_bot.png"/>
+
+                <!-- 图片渐变遮罩 -->
+                <BoxView HeightRequest="120" VerticalOptions="End">
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#00000000" Offset="0"/>
+                            <GradientStop Color="#CC000000" Offset="1"/>
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+
+                <!-- 顶部导航栏 -->
+                <Grid ColumnDefinitions="Auto,*,Auto" Margin="12" VerticalOptions="Start">
+                    <Button x:Name="BackButton"
+                            Text="Back"
+                            FontSize="16"
+                            WidthRequest="60"
+                            HeightRequest="40"
+                            CornerRadius="20"
+                            BackgroundColor="#FFFFFF30"
+                            TextColor="White"
+                            Clicked="OnBackClicked"/>
+
+                    <Button Grid.Column="2"
+                            x:Name="FavoriteButton"
+                            Text="Love"
+                            FontSize="14"
+                            WidthRequest="60"
+                            HeightRequest="40"
+                            CornerRadius="20"
+                            BackgroundColor="#FFFFFF30"
+                            TextColor="White"
+                            Clicked="OnFavoriteClicked"/>
+                </Grid>
+
+                <!-- 菜谱名称 -->
+                <VerticalStackLayout VerticalOptions="End" Margin="16">
+                    <Label x:Name="CountryEmojiLabel"
+                           FontSize="28"
+                           Text="?"/>
+                    <Label x:Name="MealNameLabel"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           LineBreakMode="TailTruncation"
+                           Text="Recipe"/>
+                    <HorizontalStackLayout Spacing="8" Margin="0,8,0,0">
+                        <Border BackgroundColor="#FFFFFF30" Padding="10,5" StrokeThickness="0" StrokeShape="RoundRectangle 8">
+                            <Label x:Name="CategoryLabel" FontSize="12" TextColor="White" FontAttributes="Bold" Text="Category"/>
+                        </Border>
+                        <Border BackgroundColor="#FFFFFF30" Padding="10,5" StrokeThickness="0" StrokeShape="RoundRectangle 8">
+                            <Label x:Name="AreaLabel" FontSize="12" TextColor="White" FontAttributes="Bold" Text="Area"/>
+                        </Border>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Grid>
+
+            <!-- 内容区域 -->
+            <Border Margin="0" Padding="16" BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E293B}" StrokeThickness="0">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="24,24,0,0"/>
+                </Border.StrokeShape>
+
+                <VerticalStackLayout Spacing="16">
+                    <!-- 简介 -->
+                    <Label Text="Description" Style="{StaticResource SectionTitle}"/>
+                    <Label x:Name="DescriptionLabel"
+                           FontSize="15"
+                           TextColor="{AppThemeBinding Light=#374151, Dark=#E5E7EB}"
+                           LineHeight="1.5"
+                           Text="A delicious recipe!"/>
+
+                    <!-- 收藏和语音按钮 -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,8,0,0">
+                        <Button x:Name="FavoriteActionButton"
+                                Text="Add Favorite"
+                                Style="{StaticResource ActionButton}"
+                                BackgroundColor="{AppThemeBinding Light=#E0F2F1, Dark=#1E3A3A}"
+                                TextColor="{AppThemeBinding Light=#00695C, Dark=#10B981}"
+                                Clicked="OnFavoriteClicked"/>
+                        <Button Grid.Column="1"
+                                x:Name="SpeakButton"
+                                Text="Read Aloud"
+                                Style="{StaticResource ActionButton}"
+                                BackgroundColor="{AppThemeBinding Light=#00695C, Dark=#10B981}"
+                                TextColor="White"
+                                Clicked="OnSpeakClicked"/>
+                    </Grid>
+
+                    <!-- 底部间距 -->
+                    <BoxView HeightRequest="40"/>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

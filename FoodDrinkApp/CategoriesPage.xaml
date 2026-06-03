@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDrinkApp.CategoriesPage"
+             Title="World Cuisines">
+    
+    <Grid RowDefinitions="Auto,*">
+
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#E0F7FA" Offset="0.0"/>
+                <GradientStop Color="#E8F5E9" Offset="0.5"/>
+                <GradientStop Color="#FFF3E0" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <VerticalStackLayout Grid.Row="0" Margin="20,20,20,0">
+            <Border StrokeThickness="0" 
+                    Padding="24"
+                    BackgroundColor="#FFFFFF"
+                    StrokeShape="RoundRectangle 20">
+                <Border.Shadow>
+                    <Shadow Brush="#00695C20" Offset="0,6" Radius="16" Opacity="0.3"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="🌍 World Cuisines"
+                           FontSize="28"
+                           FontFamily="Segoe UI"
+                           FontAttributes="Bold"
+                           TextColor="#00695C"/>
+                    <Label Text="Explore 4 amazing culinary traditions"
+                           FontSize="14"
+                           FontFamily="Segoe UI"
+                           TextColor="#4DB6AC"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <CollectionView x:Name="CountrySelector"
+                            SelectionMode="Single"
+                            SelectionChanged="OnCountrySelected"
+                            HeightRequest="100"
+                            Margin="0,16,0,0">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" ItemSpacing="12"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeThickness="0"
+                                Padding="16,12"
+                                WidthRequest="90"
+                                BackgroundColor="{Binding BackgroundColor}"
+                                StrokeShape="RoundRectangle 16">
+                            <Border.Shadow>
+                                <Shadow Brush="{Binding ShadowColor}" Offset="0,4" Radius="10" Opacity="0.25"/>
+                            </Border.Shadow>
+                            <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                                <Label Text="{Binding Emoji}" FontSize="32" HorizontalOptions="Center"/>
+                                <Label Text="{Binding Name}" 
+                                       FontSize="12" 
+                                       FontFamily="Segoe UI"
+                                       FontAttributes="Bold"
+                                       TextColor="{Binding TextColor}"
+                                       HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+
+        <!-- 选中国家的菜谱列表 -->
+        <RefreshView Grid.Row="1" 
+                     x:Name="ItemsRefreshView"
+                     Refreshing="OnRefreshing"
+                     Margin="20,16,20,12">
+            <CollectionView x:Name="CountryRecipesList"
+                            SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="16">
+                        <Label Text="🍽️" FontSize="72"/>
+                        <Label Text="Select a country to explore!" 
+                               FontSize="18" 
+                               FontFamily="Segoe UI"
+                               TextColor="#4DB6AC"/>
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeThickness="0"
+                                Margin="0,0,0,12"
+                                Padding="16"
+                                BackgroundColor="#FFFFFF"
+                                StrokeShape="RoundRectangle 16">
+                            <Border.Shadow>
+                                <Shadow Brush="#00695C15" Offset="0,3" Radius="10" Opacity="0.2"/>
+                            </Border.Shadow>
+                            <Grid ColumnDefinitions="80,*" ColumnSpacing="16">
+                                <!-- 菜谱图片 -->
+                                <Border StrokeThickness="0"
+                                        HeightRequest="80"
+                                        WidthRequest="80"
+                                        StrokeShape="RoundRectangle 12">
+                                    <Image Source="{Binding ThumbUrl}"
+                                           Aspect="AspectFill"
+                                           SemanticProperties.Description="Recipe image"/>
+                                </Border>
+                                
+                                <!-- 菜谱信息 -->
+                                <VerticalStackLayout Grid.Column="1" Spacing="6" VerticalOptions="Center">
+                                    <Label Text="{Binding Name}"
+                                           FontSize="16"
+                                           FontFamily="Segoe UI"
+                                           FontAttributes="Bold"
+                                           TextColor="#263238"/>
+                                    <Label Text="{Binding Category}"
+                                           FontSize="12"
+                                           FontFamily="Segoe UI"
+                                           TextColor="#00897B"/>
+                                    <Button Text="View Recipe →"
+                                            BackgroundColor="Transparent"
+                                            TextColor="#00695C"
+                                            FontAttributes="Bold"
+                                            FontSize="13"
+                                            HorizontalOptions="Start"
+                                            Padding="0"
+                                            Clicked="OnViewRecipeClicked"
+                                            CommandParameter="{Binding Id}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDrinkApp.AddItemPage"
+             Title="添加记录">
+    
+    <ScrollView>
+        <ScrollView.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="{AppThemeBinding Light=#F8FAFC, Dark=#0F172A}" Offset="0.0"/>
+                <GradientStop Color="{AppThemeBinding Light=#EEF2FF, Dark=#1E293B}" Offset="1.0"/>
+            </LinearGradientBrush>
+        </ScrollView.Background>
+
+        <VerticalStackLayout Padding="16" Spacing="16">
+            <!-- 标题 -->
+            <Border StrokeThickness="0" 
+                    Padding="20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E293B}"
+                    StrokeShape="RoundRectangle 16">
+                <Border.Shadow>
+                    <Shadow Brush="#20000000" Offset="0,4" Radius="12" Opacity="0.3"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="📝 添加记录"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#1E293B, Dark=#F1F5F9}"/>
+                    <Label Text="记录美味，关注健康"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light=#64748B, Dark=#94A3B8}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 基本信息 -->
+            <Border StrokeThickness="0"
+                    Padding="20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E293B}"
+                    StrokeShape="RoundRectangle 16">
+                <Border.Shadow>
+                    <Shadow Brush="#20000000" Offset="0,4" Radius="12" Opacity="0.3"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="📋 基本信息"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#6366F1"/>
+                    
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="食物名称 *" 
+                               FontSize="13"
+                               TextColor="{AppThemeBinding Light=#64748B, Dark=#94A3B8}"/>
+                        <Border StrokeThickness="1"
+                                Stroke="{AppThemeBinding Light=#E2E8F0, Dark=#334155}"
+                                BackgroundColor="{AppThemeBinding Light=#F8FAFC, Dark=#0F172A}"
+                                Padding="12,8"
+                                StrokeShape="RoundRectangle 10">
+                            <Entry x:Name="NameEntry"
+                                   Placeholder="例如：鸡胸肉沙拉"
+                                   BackgroundColor="Transparent"
+                                   TextColor="{AppThemeBinding Light=#1E293B, Dark=#F1F5F9}"
+                                   PlaceholderColor="{AppThemeBinding Light=#94A3B8, Dark=#64748B}"
+                                   SemanticProperties.Hint="必填，输入食物名称"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="分类 *" 
+                               FontSize="13"
+                               TextColor="{AppThemeBinding Light=#64748B, Dark=#94A3B8}"/>
+                        <Border StrokeThickness="1"
+                                Stroke="{AppThemeBinding Light=#E2E8F0, Dark=#334155}"
+                                BackgroundColor="{AppThemeBinding Light=#F8FAFC, Dark=#0F172A}"
+                                Padding="12,4"
+                                StrokeShape="RoundRectangle 10">
+                            <Picker x:Name="CategoryPicker"
+                                    Title="选择分类"
+                                    TextColor="{AppThemeBinding Light=#1E293B, Dark=#F1F5F9}"
+                                    TitleColor="{AppThemeBinding Light=#94A3B8, Dark=#64748B}"
+                                    SemanticProperties.Hint="必填，选择食物分类">
+                                <Picker.Items>
+                                    <x:String>Breakfast</x:String>
+                                    <x:String>Lunch</x:String>
+                                    <x:String>Dinner</x:String>
+                                    <x:String>Snack</x:String>
+                                    <x:String>Drink</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="描述" 
+                               FontSize="13"
+                               TextColor="{AppThemeBinding Light=#64748B, Dark=#94A3B8}"/>
+                        <Border StrokeThickness="1"
+                                Stroke="{AppThemeBinding Light=#E2E8F0, Dark=#334155}"
+                                BackgroundColor="{AppThemeBinding Light=#F8FAFC, Dark=#0F172A}"
+                                Padding="12"
+                                StrokeShape="RoundRectangle 10">
+                            <Editor x:Name="DescriptionEditor"
+                                    Placeholder="描述这道食物的配料、口味或特点..."
+                                    AutoSize="TextChanges"
+                                    HeightRequest="80"
+                                    BackgroundColor="Transparent"
+                                    TextColor="{AppThemeBinding Light=#1E293B, Dark=#F1F5F9}"
+                                    PlaceholderColor="{AppThemeBinding Light=#94A3B8, Dark=#64748B}"
+                                    SemanticProperties.Hint="输入食物描述"/>
+                        </Border>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 营养信息 -->
+            <Border StrokeThickness="0"
+                    Padding="20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E293B}"
+                    StrokeShape="RoundRectangle 16">
+                <Border.Shadow>
+                    <Shadow Brush="#20000000" Offset="0,4" Radius="12" Opacity="0.3"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="🥗 营养信息"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#10B981"/>
+                    
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="热量 (千卡) *" 
+                                   FontSize="13"
+                                   TextColor="{AppThemeBinding Light=#64748B, Dark=#94A3B8}"/>
+                            <Border StrokeThickness="1"
+                                    Stroke="{AppThemeBinding Light=#E2E8F0, Dark=#334155}"
+                                    BackgroundColor="{AppThemeBinding Light=#F8FAFC, Dark=#0F172A}"
+                                    Padding="12,8"
+                                    StrokeShape="RoundRectangle 10">
+                                <Entry x:Name="CaloriesEntry"
+                                       Placeholder="0"
+                                       Keyboard="Numeric"
+                                       BackgroundColor="Transparent"
+                                       TextColor="{AppThemeBinding Light=#1E293B, Dark=#F1F5F9}"
+                                       PlaceholderColor="{AppThemeBinding Light=#94A3B8, Dark=#64748B}"
+                                       SemanticProperties.Hint="必填，输入热量"/>
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="蛋白质 (克)" 
+                                   FontSize="13"
+                                   TextColor="{AppThemeBinding Light=#64748B, Dark=#94A3B8}"/>
+                            <Border StrokeThickness="1"
+                                    Stroke="{AppThemeBinding Light=#E2E8F0, Dark=#334155}"
+                                    BackgroundColor="{AppThemeBinding Light=#F8FAFC, Dark=#0F172A}"
+                                    Padding="12,8"
+                                    StrokeShape="RoundRectangle 10">
+                                <Entry x:Name="ProteinEntry"
+                                       Placeholder="0"
+                                       Keyboard="Numeric"
+                                       BackgroundColor="Transparent"
+                                       TextColor="{AppThemeBinding Light=#1E293B, Dark=#F1F5F9}"
+                                       PlaceholderColor="{AppThemeBinding Light=#94A3B8, Dark=#64748B}"/>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="碳水 (克)" 
+                                   FontSize="13"
+                                   TextColor="{AppThemeBinding Light=#64748B, Dark=#94A3B8}"/>
+                            <Border StrokeThickness="1"
+                                    Stroke="{AppThemeBinding Light=#E2E8F0, Dark=#334155}"
+                                    BackgroundColor="{AppThemeBinding Light=#F8FAFC, Dark=#0F172A}"
+                                    Padding="12,8"
+                                    StrokeShape="RoundRectangle 10">
+                                <Entry x:Name="CarbsEntry"
+                                       Placeholder="0"
+                                       Keyboard="Numeric"
+                                       BackgroundColor="Transparent"
+                                       TextColor="{AppThemeBinding Light=#1E293B, Dark=#F1F5F9}"
+                                       PlaceholderColor="{AppThemeBinding Light=#94A3B8, Dark=#64748B}"/>
+                            </Border>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="脂肪 (克)" 
+                                   FontSize="13"
+                                   TextColor="{AppThemeBinding Light=#64748B, Dark=#94A3B8}"/>
+                            <Border StrokeThickness="1"
+                                    Stroke="{AppThemeBinding Light=#E2E8F0, Dark=#334155}"
+                                    BackgroundColor="{AppThemeBinding Light=#F8FAFC, Dark=#0F172A}"
+                                    Padding="12,8"
+                                    StrokeShape="RoundRectangle 10">
+                                <Entry x:Name="FatEntry"
+                                       Placeholder="0"
+                                       Keyboard="Numeric"
+                                       BackgroundColor="Transparent"
+                                       TextColor="{AppThemeBinding Light=#1E293B, Dark=#F1F5F9}"
+                                       PlaceholderColor="{AppThemeBinding Light=#94A3B8, Dark=#64748B}"/>
+                            </Border>
+                        </VerticalStackLayout>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 过敏信息 -->
+            <Border StrokeThickness="0"
+                    Padding="20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E293B}"
+                    StrokeShape="RoundRectangle 16">
+                <Border.Shadow>
+                    <Shadow Brush="#20000000" Offset="0,4" Radius="12" Opacity="0.3"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="⚠️ 过敏提示"
+                           FontSize="16"
+                           FontAttributes="Bold"
+                           TextColor="#F59E0B"/>
+                    <Border StrokeThickness="1"
+                            Stroke="{AppThemeBinding Light=#E2E8F0, Dark=#334155}"
+                            BackgroundColor="{AppThemeBinding Light=#F8FAFC, Dark=#0F172A}"
+                            Padding="12,8"
+                            StrokeShape="RoundRectangle 10">
+                        <Entry x:Name="AllergyEntry"
+                               Placeholder="例如：含有坚果、乳制品等"
+                               BackgroundColor="Transparent"
+                               TextColor="{AppThemeBinding Light=#1E293B, Dark=#F1F5F9}"
+                               PlaceholderColor="{AppThemeBinding Light=#94A3B8, Dark=#64748B}"
+                               SemanticProperties.Hint="输入过敏信息"/>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 验证错误提示 -->
+            <Border x:Name="ValidationPanel"
+                    IsVisible="False"
+                    StrokeThickness="0"
+                    BackgroundColor="#FEF2F2"
+                    Padding="16"
+                    StrokeShape="RoundRectangle 12">
+                <HorizontalStackLayout Spacing="8">
+                    <Label Text="❌" FontSize="18"/>
+                    <Label x:Name="ValidationLabel"
+                           TextColor="#DC2626"
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+            </Border>
+
+            <!-- 保存按钮 -->
+            <Button Text="💾 保存记录"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    BackgroundColor="#6366F1"
+                    TextColor="#FFFFFF"
+                    CornerRadius="12"
+                    HeightRequest="54"
+                    Clicked="OnSaveClicked"
+                    SemanticProperties.Hint="验证并保存记录"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

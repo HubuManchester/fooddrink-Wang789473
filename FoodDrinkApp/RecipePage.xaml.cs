@@ -17,24 +17,22 @@ public partial class RecipePage : ContentPage
 
     private void LoadMealData()
     {
-        // 设置菜品名称
         MealName.Text = _meal.Name ?? "Unknown";
-
-        // 设置菜系和类别
         MealArea.Text = _meal.Area ?? "Unknown Cuisine";
         MealCategory.Text = _meal.Category ?? "Unknown Category";
 
-        // 设置图片
+        // Set image - use local image path
         if (!string.IsNullOrEmpty(_meal.ImageUrl))
         {
             MealImage.Source = _meal.ImageUrl;
         }
         else
         {
-            MealImage.Source = "default_food.png";
+            // Hide image if no URL available
+            MealImage.IsVisible = false;
         }
 
-        // 设置食材列表
+        // Set ingredients
         if (_meal.Ingredients != null && _meal.Ingredients.Count > 0)
         {
             IngredientsView.ItemsSource = new ObservableCollection<string>(_meal.Ingredients);
@@ -47,11 +45,10 @@ public partial class RecipePage : ContentPage
             };
         }
 
-        // 设置制作步骤
+        // Set instructions
         InstructionsLabel.Text = _meal.Instructions ?? "No instructions available for this dish.";
     }
 
-    // 语音朗读功能
     private async void OnReadAloudClicked(object sender, EventArgs e)
     {
         try

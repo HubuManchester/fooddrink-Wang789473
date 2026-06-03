@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDrinkApp.StatisticsPage"
+             Title="Exploration Stats">
+    
+    <ScrollView>
+        <ScrollView.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#E3F2FD" Offset="0.0"/>
+                <GradientStop Color="#E8F5E9" Offset="1.0"/>
+            </LinearGradientBrush>
+        </ScrollView.Background>
+
+        <VerticalStackLayout Padding="20" Spacing="16">
+            <!-- 标题 -->
+            <Border StrokeThickness="0" 
+                    Padding="24"
+                    BackgroundColor="#FFFFFF"
+                    StrokeShape="RoundRectangle 20">
+                <Border.Shadow>
+                    <Shadow Brush="#1565C020" Offset="0,6" Radius="16" Opacity="0.3"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="📊 Exploration Stats"
+                           FontSize="26"
+                           FontFamily="Segoe UI"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"/>
+                    <Label Text="Your culinary journey around the world"
+                           FontSize="14"
+                           FontFamily="Segoe UI"
+                           TextColor="#64B5F6"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 统计卡片 -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="12" RowSpacing="12">
+                <Border StrokeThickness="0"
+                        Padding="20"
+                        BackgroundColor="#1565C0"
+                        StrokeShape="RoundRectangle 16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="🧭" FontSize="32" HorizontalOptions="Center"/>
+                        <Label x:Name="CompassUsesLabel"
+                               Text="0"
+                               FontSize="32"
+                               FontFamily="Segoe UI"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF"
+                               HorizontalOptions="Center"/>
+                        <Label Text="Compass Uses"
+                               FontSize="12"
+                               FontFamily="Segoe UI"
+                               TextColor="#BBDEFB"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+                
+                <Border Grid.Column="1"
+                        StrokeThickness="0"
+                        Padding="20"
+                        BackgroundColor="#7B1FA2"
+                        StrokeShape="RoundRectangle 16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="📳" FontSize="32" HorizontalOptions="Center"/>
+                        <Label x:Name="ShakeCountLabel"
+                               Text="0"
+                               FontSize="32"
+                               FontFamily="Segoe UI"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF"
+                               HorizontalOptions="Center"/>
+                        <Label Text="Shake Count"
+                               FontSize="12"
+                               FontFamily="Segoe UI"
+                               TextColor="#E1BEE7"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+                
+                <Border Grid.Row="1"
+                        StrokeThickness="0"
+                        Padding="20"
+                        BackgroundColor="#00897B"
+                        StrokeShape="RoundRectangle 16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="🌍" FontSize="32" HorizontalOptions="Center"/>
+                        <Label x:Name="CountriesExploredLabel"
+                               Text="0"
+                               FontSize="32"
+                               FontFamily="Segoe UI"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF"
+                               HorizontalOptions="Center"/>
+                        <Label Text="Countries"
+                               FontSize="12"
+                               FontFamily="Segoe UI"
+                               TextColor="#B2DFDB"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+                
+                <Border Grid.Row="1" Grid.Column="1"
+                        StrokeThickness="0"
+                        Padding="20"
+                        BackgroundColor="#E65100"
+                        StrokeShape="RoundRectangle 16">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="⭐" FontSize="32" HorizontalOptions="Center"/>
+                        <Label x:Name="FavoritesCountLabel"
+                               Text="0"
+                               FontSize="32"
+                               FontFamily="Segoe UI"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFF"
+                               HorizontalOptions="Center"/>
+                        <Label Text="Favorites"
+                               FontSize="12"
+                               FontFamily="Segoe UI"
+                               TextColor="#FFE0B2"
+                               HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- 菜系分布 -->
+            <Border StrokeThickness="0"
+                    Padding="20"
+                    BackgroundColor="#FFFFFF"
+                    StrokeShape="RoundRectangle 16">
+                <Border.Shadow>
+                    <Shadow Brush="#1565C015" Offset="0,4" Radius="12" Opacity="0.2"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="🍽️ Cuisines Explored"
+                           FontSize="18"
+                           FontFamily="Segoe UI"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"/>
+                    
+                    <Grid ColumnDefinitions="*,*" RowSpacing="12">
+                        <Border BackgroundColor="#FFEBEE" StrokeThickness="0" Padding="16" StrokeShape="RoundRectangle 12">
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <Label Text="🇨🇳" FontSize="28" HorizontalOptions="Center"/>
+                                <Label x:Name="ChineseCountLabel" Text="0" FontSize="24" FontAttributes="Bold" TextColor="#C62828" HorizontalOptions="Center"/>
+                                <Label Text="Chinese" FontSize="11" TextColor="#C62828" HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Column="1" BackgroundColor="#E3F2FD" StrokeThickness="0" Padding="16" StrokeShape="RoundRectangle 12">
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <Label Text="🇯🇵" FontSize="28" HorizontalOptions="Center"/>
+                                <Label x:Name="JapaneseCountLabel" Text="0" FontSize="24" FontAttributes="Bold" TextColor="#1565C0" HorizontalOptions="Center"/>
+                                <Label Text="Japanese" FontSize="11" TextColor="#1565C0" HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Row="1" BackgroundColor="#E8F5E9" StrokeThickness="0" Padding="16" StrokeShape="RoundRectangle 12">
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <Label Text="🇮🇹" FontSize="28" HorizontalOptions="Center"/>
+                                <Label x:Name="ItalianCountLabel" Text="0" FontSize="24" FontAttributes="Bold" TextColor="#2E7D32" HorizontalOptions="Center"/>
+                                <Label Text="Italian" FontSize="11" TextColor="#2E7D32" HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="1" BackgroundColor="#FFF3E0" StrokeThickness="0" Padding="16" StrokeShape="RoundRectangle 12">
+                            <VerticalStackLayout HorizontalOptions="Center">
+                                <Label Text="🇲🇽" FontSize="28" HorizontalOptions="Center"/>
+                                <Label x:Name="MexicanCountLabel" Text="0" FontSize="24" FontAttributes="Bold" TextColor="#E65100" HorizontalOptions="Center"/>
+                                <Label Text="Mexican" FontSize="11" TextColor="#E65100" HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 语音播报 -->
+            <Button Text="🔊 Read Statistics"
+                    BackgroundColor="#1565C0"
+                    TextColor="#FFFFFF"
+                    FontFamily="Segoe UI"
+                    FontAttributes="Bold"
+                    CornerRadius="12"
+                    HeightRequest="50"
+                    Clicked="OnSpeakStatsClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

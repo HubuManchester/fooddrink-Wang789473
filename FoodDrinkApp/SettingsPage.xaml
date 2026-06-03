@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDrinkApp.SettingsPage"
+             Title="Settings"
+             BackgroundColor="{AppThemeBinding Light=#F0FDF4, Dark=#0F172A}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="16">
+            <!-- 标题 -->
+            <Border StrokeThickness="0" 
+                    Padding="24"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E293B}"
+                    StrokeShape="RoundRectangle 20">
+                <Border.Shadow>
+                    <Shadow Brush="#455A6420" Offset="0,6" Radius="16" Opacity="0.3"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="⚙️ Settings"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#455A64, Dark=#E0E0E0}"/>
+                    <Label Text="Customize your recipe explorer"
+                           FontSize="14"
+                           TextColor="{AppThemeBinding Light=#78909C, Dark=#9E9E9E}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 外观设置 -->
+            <Border StrokeThickness="0"
+                    Padding="20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E293B}"
+                    StrokeShape="RoundRectangle 16">
+                <Border.Shadow>
+                    <Shadow Brush="#455A6415" Offset="0,4" Radius="12" Opacity="0.2"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="🎨 Appearance"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#00695C, Dark=#10B981}"/>
+                    
+                    <!-- 主题选择 -->
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Theme" 
+                               FontSize="13"
+                               TextColor="{AppThemeBinding Light=#78909C, Dark=#9E9E9E}"/>
+                        <Border StrokeThickness="1"
+                                Stroke="{AppThemeBinding Light=#B0BEC5, Dark=#424242}"
+                                BackgroundColor="{AppThemeBinding Light=#FAFAFA, Dark=#2D2D2D}"
+                                Padding="12,8"
+                                StrokeShape="RoundRectangle 10">
+                            <Picker x:Name="ThemePicker"
+                                    Title="Select Theme"
+                                    SelectedIndexChanged="OnThemeChanged"
+                                    TextColor="{AppThemeBinding Light=#455A64, Dark=#E0E0E0}"
+                                    TitleColor="{AppThemeBinding Light=#78909C, Dark=#9E9E9E}">
+                                <Picker.Items>
+                                    <x:String>System Default</x:String>
+                                    <x:String>Light Mode</x:String>
+                                    <x:String>Dark Mode</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Border>
+                    </VerticalStackLayout>
+                    
+                    <!-- 大字体开关 -->
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Large Text Mode" 
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light=#455A64, Dark=#E0E0E0}"/>
+                            <Label Text="Increase text size for better readability" 
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light=#78909C, Dark=#9E9E9E}"/>
+                        </VerticalStackLayout>
+                        <Switch x:Name="LargeTextSwitch"
+                                Toggled="OnLargeTextToggled"
+                                OnColor="#00695C"
+                                VerticalOptions="Center"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 无障碍设置 -->
+            <Border StrokeThickness="0"
+                    Padding="20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E293B}"
+                    StrokeShape="RoundRectangle 16">
+                <Border.Shadow>
+                    <Shadow Brush="#455A6415" Offset="0,4" Radius="12" Opacity="0.2"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="16">
+                    <Label Text="♿ Accessibility"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#00695C, Dark=#10B981}"/>
+                    
+                    <!-- 语音播报开关 -->
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Text-to-Speech" 
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light=#455A64, Dark=#E0E0E0}"/>
+                            <Label Text="Read recipe information aloud" 
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light=#78909C, Dark=#9E9E9E}"/>
+                        </VerticalStackLayout>
+                        <Switch x:Name="SpeechSwitch"
+                                IsToggled="True"
+                                OnColor="#00695C"
+                                VerticalOptions="Center"/>
+                    </Grid>
+                    
+                    <!-- 触觉反馈开关 -->
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Haptic Feedback" 
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light=#455A64, Dark=#E0E0E0}"/>
+                            <Label Text="Vibration on interactions" 
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light=#78909C, Dark=#9E9E9E}"/>
+                        </VerticalStackLayout>
+                        <Switch x:Name="HapticSwitch"
+                                IsToggled="True"
+                                OnColor="#00695C"
+                                VerticalOptions="Center"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 预览卡片 -->
+            <Border StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=#E0F2F1, Dark=#1A2F2F}"
+                    Padding="20"
+                    StrokeShape="RoundRectangle 16">
+                <VerticalStackLayout Spacing="12">
+                    <Label x:Name="PreviewTitle"
+                           Text="Font Preview"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#00695C, Dark=#10B981}"
+                           HorizontalOptions="Center"/>
+                    <Label x:Name="PreviewBody"
+                           Text="This is how text will appear in the app."
+                           FontSize="15"
+                           TextColor="{AppThemeBinding Light=#455A64, Dark=#CFD8DC}"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 关于 -->
+            <Border StrokeThickness="0"
+                    Padding="20"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#1E293B}"
+                    StrokeShape="RoundRectangle 16">
+                <Border.Shadow>
+                    <Shadow Brush="#455A6415" Offset="0,4" Radius="12" Opacity="0.2"/>
+                </Border.Shadow>
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="ℹ️ About"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#00695C, Dark=#10B981}"/>
+                    
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10" ColumnSpacing="16">
+                        <Label Text="App" FontSize="13" TextColor="{AppThemeBinding Light=#78909C, Dark=#9E9E9E}" VerticalOptions="Center"/>
+                        <Label Grid.Column="1" Text="Smart Recipe Explorer" FontSize="15" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#455A64, Dark=#E0E0E0}" VerticalOptions="Center"/>
+                        
+                        <Label Grid.Row="1" Text="Version" FontSize="13" TextColor="{AppThemeBinding Light=#78909C, Dark=#9E9E9E}" VerticalOptions="Center"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="1.0.0" FontSize="15" TextColor="{AppThemeBinding Light=#455A64, Dark=#E0E0E0}" VerticalOptions="Center"/>
+                        
+                        <Label Grid.Row="2" Text="API" FontSize="13" TextColor="{AppThemeBinding Light=#78909C, Dark=#9E9E9E}" VerticalOptions="Center"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="TheMealDB.com" FontSize="15" TextColor="{AppThemeBinding Light=#455A64, Dark=#E0E0E0}" VerticalOptions="Center"/>
+                        
+                        <Label Grid.Row="3" Text="Course" FontSize="13" TextColor="{AppThemeBinding Light=#78909C, Dark=#9E9E9E}" VerticalOptions="Center"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="Food and Drink" FontSize="15" TextColor="{AppThemeBinding Light=#455A64, Dark=#E0E0E0}" VerticalOptions="Center"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 状态 -->
+            <Label x:Name="SettingsStatusLabel"
+                   Text="Settings ready ✓"
+                   FontSize="13"
+                   TextColor="{AppThemeBinding Light=#00695C, Dark=#10B981}"
+                   HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

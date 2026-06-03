@@ -14,6 +14,7 @@
   <uses-permission android:name="android.permission.CAMERA" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.VIBRATE" />
   <application android:allowBackup="true" android:icon="@mipmap/appicon" android:supportsRtl="true" android:name="crc64a43708b03ae45d34.MainApplication" android:label="FoodDrinkApp" android:debuggable="true" android:extractNativeLibs="true">
     <activity android:configChanges="density|orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:launchMode="singleTop" android:theme="@style/Maui.SplashTheme" android:name="crc64a43708b03ae45d34.MainActivity" android:exported="true">
       <intent-filter>

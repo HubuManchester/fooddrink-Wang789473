@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDrinkApp.FavoritesPage"
+             Title="My Favorites">
+    
+    <Grid RowDefinitions="Auto,*">
+
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#F3E5F5" Offset="0.0"/>
+                <GradientStop Color="#E1F5FE" Offset="0.5"/>
+                <GradientStop Color="#E8F5E9" Offset="1.0"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <VerticalStackLayout Grid.Row="0" Margin="20,20,20,0">
+            <Border StrokeThickness="0" 
+                    Padding="24"
+                    BackgroundColor="#FFFFFF"
+                    StrokeShape="RoundRectangle 20">
+                <Border.Shadow>
+                    <Shadow Brush="#7B1FA220" Offset="0,6" Radius="16" Opacity="0.3"/>
+                </Border.Shadow>
+                <Grid ColumnDefinitions="*,Auto">
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="⭐ My Favorites"
+                               FontSize="28"
+                               FontFamily="Segoe UI"
+                               FontAttributes="Bold"
+                               TextColor="#7B1FA2"/>
+                        <Label Text="Your saved recipes from around the world"
+                               FontSize="14"
+                               FontFamily="Segoe UI"
+                               TextColor="#AB47BC"/>
+                    </VerticalStackLayout>
+                    <Label x:Name="FavoritesCountLabel"
+                           Grid.Column="1"
+                           Text="0"
+                           FontSize="36"
+                           FontFamily="Segoe UI"
+                           FontAttributes="Bold"
+                           TextColor="#E91E63"
+                           VerticalOptions="Center"/>
+                </Grid>
+            </Border>
+        </VerticalStackLayout>
+
+        <RefreshView Grid.Row="1" 
+                     x:Name="FavoritesRefreshView"
+                     Refreshing="OnRefreshing"
+                     Margin="20,16,20,12">
+            <CollectionView x:Name="FavoritesList"
+                            SelectionMode="None">
+                <CollectionView.EmptyView>
+                    <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center" Spacing="16">
+                        <Label Text="💜" FontSize="80"/>
+                        <Label Text="No favorites yet!" 
+                               FontSize="20" 
+                               FontFamily="Segoe UI"
+                               FontAttributes="Bold"
+                               TextColor="#7B1FA2"/>
+                        <Label Text="Explore cuisines in the Hardware tab\nand save your favorite recipes!" 
+                               FontSize="14" 
+                               FontFamily="Segoe UI"
+                               TextColor="#AB47BC"
+                               HorizontalTextAlignment="Center"/>
+                        <Button Text="🧭 Go Explore"
+                                BackgroundColor="#7B1FA2"
+                                TextColor="#FFFFFF"
+                                CornerRadius="12"
+                                WidthRequest="140"
+                                Margin="0,8,0,0"
+                                Clicked="OnExploreClicked"/>
+                    </VerticalStackLayout>
+                </CollectionView.EmptyView>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border StrokeThickness="0"
+                                Margin="0,0,0,12"
+                                Padding="16"
+                                BackgroundColor="#FFFFFF"
+                                StrokeShape="RoundRectangle 16">
+                            <Border.Shadow>
+                                <Shadow Brush="#7B1FA220" Offset="0,3" Radius="10" Opacity="0.2"/>
+                            </Border.Shadow>
+                            <Grid ColumnDefinitions="80,*,Auto" ColumnSpacing="16">
+                                <!-- 菜谱图片 -->
+                                <Border StrokeThickness="0"
+                                        HeightRequest="80"
+                                        WidthRequest="80"
+                                        StrokeShape="RoundRectangle 12">
+                                    <Image Source="{Binding ThumbUrl}"
+                                           Aspect="AspectFill"
+                                           SemanticProperties.Description="Recipe image"/>
+                                </Border>
+                                
+                                <!-- 菜谱信息 -->
+                                <VerticalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                                    <HorizontalStackLayout Spacing="8">
+                                        <Label Text="{Binding CountryEmoji}" FontSize="20"/>
+                                        <Label Text="{Binding Name}"
+                                               FontSize="16"
+                                               FontFamily="Segoe UI"
+                                               FontAttributes="Bold"
+                                               TextColor="#263238"/>
+                                    </HorizontalStackLayout>
+                                    <Label Text="{Binding Area}"
+                                           FontSize="12"
+                                           FontFamily="Segoe UI"
+                                           TextColor="#7B1FA2"/>
+                                    <Label Text="{Binding Category}"
+                                           FontSize="11"
+                                           FontFamily="Segoe UI"
+                                           TextColor="#AB47BC"/>
+                                </VerticalStackLayout>
+                                
+                                <!-- 移除收藏按钮 -->
+                                <Button Grid.Column="2"
+                                        Text="💜"
+                                        FontSize="24"
+                                        BackgroundColor="Transparent"
+                                        TextColor="#E91E63"
+                                        Clicked="OnRemoveFavoriteClicked"
+                                        CommandParameter="{Binding Id}"
+                                        Padding="0"
+                                        WidthRequest="44"
+                                        HeightRequest="44"
+                                        VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </Grid>
+</ContentPage>

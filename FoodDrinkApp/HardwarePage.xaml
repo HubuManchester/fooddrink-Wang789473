@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FoodDrinkApp.HardwarePage"
+             Title="Smart Recipe Explorer">
+    <ScrollView>
+        <ScrollView.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="{AppThemeBinding Light=#FFF1DA, Dark=#130F0C}" Offset="0.0" />
+                <GradientStop Color="{AppThemeBinding Light=#FFF9EF, Dark=#0F1711}" Offset="1.0" />
+            </LinearGradientBrush>
+        </ScrollView.Background>
+
+        <VerticalStackLayout Padding="20" Spacing="16">
+            
+            <Border StrokeThickness="0" Padding="18" BackgroundColor="{AppThemeBinding Light=#FFFDF8, Dark=#1A1712}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Smart Recipe Explorer"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#D9472B, Dark=#FF9C7B}"
+                           SemanticProperties.HeadingLevel="Level1" />
+                    <Label Text="🧭 Rotate to explore | 📳 Shake for random | 📷 Capture food"
+                           FontSize="13"
+                           TextColor="{AppThemeBinding Light=#8B6D55, Dark=#D8C4AC}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeThickness="1"
+                    Stroke="{AppThemeBinding Light=#F0D6B8, Dark=#3E3023}"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFA, Dark=#1A1712}"
+                    Padding="16">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="12">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="3">
+                            <Label Text="🧭 Compass Explorer" FontSize="18" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#D9472B, Dark=#FF9C7B}" />
+                            <Label Text="Rotate your device to discover cuisines from around the world!" FontSize="12" TextColor="{AppThemeBinding Light=#8B6D55, Dark=#D8C4AC}" />
+                        </VerticalStackLayout>
+                        <Button Grid.Column="1"
+                                x:Name="CompassButton"
+                                Text="Start"
+                                BackgroundColor="#D9472B"
+                                TextColor="#FFFFFF"
+                                Clicked="OnCompassToggled"
+                                SemanticProperties.Hint="Start compass exploration" />
+                    </Grid>
+                    
+                    <Grid ColumnDefinitions="*,*,*,*" Margin="0,8,0,0">
+                        <Label Text="N=🇨🇳" FontSize="11" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#D9472B, Dark=#FF9C7B}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Text="E=🇯🇵" FontSize="11" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#D9472B, Dark=#FF9C7B}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Text="S=🇮🇹" FontSize="11" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#D9472B, Dark=#FF9C7B}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="3" Text="W=🇲🇽" FontSize="11" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#D9472B, Dark=#FF9C7B}" HorizontalOptions="Center"/>
+                    </Grid>
+                    
+                    <Border StrokeThickness="0"
+                            BackgroundColor="{AppThemeBinding Light=#FFF5EB, Dark=#2D1810}"
+                            Padding="16"
+                            HeightRequest="160"
+                            StrokeShape="RoundRectangle 12">
+                        <Grid RowDefinitions="Auto,*,Auto" HorizontalOptions="Center" VerticalOptions="Center">
+                            <!-- N标识 -->
+                            <Label Text="N 🧭" FontSize="14" FontAttributes="Bold" TextColor="#D32F2F" HorizontalOptions="Center" />
+                            
+                            <!-- 旋转箭头和方向 -->
+                            <Grid Grid.Row="1" ColumnDefinitions="*,Auto,*" WidthRequest="140">
+                                <Label Text="W" FontSize="12" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#8B6D55, Dark=#A0826D}" HorizontalOptions="Start" VerticalOptions="Center" />
+                                <Image x:Name="CompassArrowImage"
+                                       Source="compass_arrow.png"
+                                       WidthRequest="60"
+                                       HeightRequest="60"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center"
+                                       Rotation="0"
+                                       SemanticProperties.Description="Compass arrow pointing north" />
+                                <Label Grid.Column="2" Text="E" FontSize="12" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#8B6D55, Dark=#A0826D}" HorizontalOptions="End" VerticalOptions="Center" />
+                            </Grid>
+                            
+                            <!-- S标识 -->
+                            <Label Grid.Row="2" Text="S" FontSize="12" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#8B6D55, Dark=#A0826D}" HorizontalOptions="Center" />
+                        </Grid>
+                    </Border>
+                    
+                    <!-- 角度显示 -->
+                    <Label x:Name="CompassHeadingLabel"
+                           Text="Heading: --°"
+                           FontSize="13"
+                           FontAttributes="Bold"
+                           TextColor="{AppThemeBinding Light=#D9472B, Dark=#FF9C7B}"
+                           HorizontalOptions="Center" />
+                    
+                    <!-- 菜系和菜谱显示 -->
+                    <Border StrokeThickness="0"
+                            BackgroundColor="{AppThemeBinding Light=#FFF8E1, Dark=#3E2723}"
+                            Padding="14"
+                            StrokeShape="RoundRectangle 8">
+                        <VerticalStackLayout Spacing="8" HorizontalOptions="Center">
+                            <Label x:Name="CuisineRegionLabel"
+                                   Text="🌍 Point your device to discover cuisines!"
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light=#E65100, Dark=#FFB74D}"
+                                   HorizontalOptions="Center" />
+                            
+                            <!-- 菜谱图片 -->
+                            <Border StrokeThickness="0"
+                                    BackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#1A1712}"
+                                    HeightRequest="120"
+                                    StrokeShape="RoundRectangle 8"
+                                    IsVisible="False"
+                                    x:Name="MealImageBorder">
+                                <Image x:Name="MealImage"
+                                       Aspect="AspectFill"
+                                       SemanticProperties.Description="Recipe image" />
+                            </Border>
+                            
+                            <!-- 菜谱名称 -->
+                            <Label x:Name="MealNameLabel"
+                                   Text="--"
+                                   FontSize="16"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light=#BF360C, Dark=#FF8A65}"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center" />
+                            
+                            <!-- 加载指示器 -->
+                            <ActivityIndicator x:Name="LoadingIndicator"
+                                              IsRunning="False"
+                                              IsVisible="False"
+                                              Color="#D9472B"
+                                              HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <!-- 模拟旋转按钮 -->
+                    <Button x:Name="SimulateCompassButton"
+                            Text="🎮 Simulate Rotation (for emulator)"
+                            BackgroundColor="{AppThemeBinding Light=#FFF3E0, Dark=#4E2720}"
+                            BorderColor="{AppThemeBinding Light=#FFCC80, Dark=#6D4C41}"
+                            BorderWidth="1"
+                            TextColor="{AppThemeBinding Light=#E65100, Dark=#FFAB91}"
+                            FontSize="12"
+                            Clicked="OnSimulateCompassClicked"
+                            SemanticProperties.Hint="Simulate compass rotation for testing" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 摇一摇随机推荐 -->
+            <Border StrokeThickness="1"
+                    Stroke="{AppThemeBinding Light=#F0D6B8, Dark=#3E3023}"
+                    BackgroundColor="{AppThemeBinding Light=#FFFFFA, Dark=#1A1712}"
+                    Padding="16">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <VerticalStackLayout Spacing="12">
+                    <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="3">
+                            <Label Text="📳 Shake for Random Recipe" FontSize="18" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#7B1FA2, Dark=#CE93D8}" />
+                            <Label Text="Shake your device to get a random recipe recommendation!" FontSize="12" TextColor="{AppThemeBinding Light=#8B6D55, Dark=#D8C4AC}" />
+                        </VerticalStackLayout>
+                        <Button Grid.Column="1"
+                                x:Name="ShakeButton"
+                                Text="Start"
+                                BackgroundColor="#7B1FA2"
+                                TextColor="#FFFFFF"
+                                Clicked="OnShakeToggled"
+                                SemanticProperties.Hint="Start shake detection" />
+                    </Grid>
+                    
+                    <Border StrokeThickness="0"
+                            BackgroundColor="{AppThemeBinding Light=#F3E5F5, Dark=#4A148C}"
+                            Padding="20"
+                            StrokeShape="RoundRectangle 8">
+                        <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                            <Label x:Name="ShakeIconLabel"
+                                   Text="📱"
+                                   FontSize="48"
+                                   HorizontalOptions="Center" />
+                            <Label x:Name="ShakeStatusLabel"
+                                   Text="Tap 'Start' then shake your device!"
+                                   FontSize="13"
+                                   TextColor="{AppThemeBinding Light=#7B1FA2, Dark=#E1BEE7}"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                    
+                    <Label x:Name="ShakeCountLabel"
+                           Text="Shake count: 0"
+                           FontSize="13"
+                           TextColor="{AppThemeBinding Light=#666666, Dark=#888888}"
+                           HorizontalOptions="Center" />
+                    
+                    <!-- 模拟摇晃按钮（用于演示） -->
+                    <Button x:Name="SimulateShakeButton"
+                            Text="🎮 Simulate Shake (for demo)"
+                            BackgroundColor="#FF5722"
+                            TextColor="#FFFFFF"
+                            CornerRadius="8"
+                            Clicked="OnSimulateShakeClicked"
+                            SemanticProperties.Hint="Simulate shake gesture for demonstration" />
+                    
+                    <!-- 推荐结果 -->
+                    <Border x:Name="RandomRecipeBorder"
+                            StrokeThickness="0"
+                            BackgroundColor="{AppThemeBinding Light=#E8F5E9, Dark=#1B3D1F}"
+                            Padding="12"
+                            StrokeShape="RoundRectangle 8"
+                            IsVisible="False">
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnRandomRecipeClicked" />
+                        </Border.GestureRecognizers>
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="Tap to view details"
+                                   FontSize="10"
+                                   TextColor="{AppThemeBinding Light=#666666, Dark=#888888}"
+                                   HorizontalOptions="Center" />
+                            <Label x:Name="RandomMealNameLabel"
+                                   Text=""
+                                   FontSize="15"
+                                   FontAttributes="Bold"
+                                   TextColor="{AppThemeBinding Light=#2E7D32, Dark=#A5D6A7}"
+                                   HorizontalOptions="Center" />
+                            <Label x:Name="RandomMealAreaLabel"
+                                   Text=""
+                                   FontSize="12"
+                                   TextColor="{AppThemeBinding Light=#666666, Dark=#81C784}"
+                                   HorizontalOptions="Center" />
+                        </VerticalStackLayout>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- 其他硬件功能 -->
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
+                <!-- 相机 -->
+                <Border Grid.ColumnSpan="2" StrokeThickness="1"
+                        Stroke="{AppThemeBinding Light=#F0D6B8, Dark=#3E3023}"
+                        BackgroundColor="{AppThemeBinding Light=#FFFFFA, Dark=#1A1712}"
+                        Padding="14">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8" />
+                    </Border.StrokeShape>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="📷 Camera" FontSize="15" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#2F7A4F, Dark=#8CE6A1}" />
+                            <Label Text="Capture food photos" FontSize="11" TextColor="{AppThemeBinding Light=#8B6D55, Dark=#D8C4AC}" />
+                        </VerticalStackLayout>
+                        <Button Grid.Column="1"
+                                Text="Photo"
+                                BackgroundColor="#2F7A4F"
+                                TextColor="#FFFFFF"
+                                Clicked="OnTakePhotoClicked" />
+                    </Grid>
+                </Border>
+                
+                <!-- GPS -->
+                <Border Grid.Row="1" StrokeThickness="1"
+                        Stroke="{AppThemeBinding Light=#F0D6B8, Dark=#3E3023}"
+                        BackgroundColor="{AppThemeBinding Light=#FFFFFA, Dark=#1A1712}"
+                        Padding="14">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8" />
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="📍 GPS" FontSize="15" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#1976D2, Dark=#64B5F6}" />
+                        <Label Text="Get location" FontSize="11" TextColor="{AppThemeBinding Light=#8B6D55, Dark=#D8C4AC}" />
+                        <Button Text="Locate"
+                                BackgroundColor="#1976D2"
+                                TextColor="#FFFFFF"
+                                Margin="0,6,0,0"
+                                Clicked="OnGetLocationClicked" />
+                    </VerticalStackLayout>
+                </Border>
+                
+                <!-- 语音 -->
+                <Border Grid.Row="1" Grid.Column="1" StrokeThickness="1"
+                        Stroke="{AppThemeBinding Light=#F0D6B8, Dark=#3E3023}"
+                        BackgroundColor="{AppThemeBinding Light=#FFFFFA, Dark=#1A1712}"
+                        Padding="14">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="8" />
+                    </Border.StrokeShape>
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="🔊 Speech" FontSize="15" FontAttributes="Bold" TextColor="{AppThemeBinding Light=#F29B38, Dark=#FFD54F}" />
+                        <Label Text="Read recipe aloud" FontSize="11" TextColor="{AppThemeBinding Light=#8B6D55, Dark=#D8C4AC}" />
+                        <Button Text="Speak"
+                                BackgroundColor="#F29B38"
+                                TextColor="#3A2518"
+                                Margin="0,6,0,0"
+                                Clicked="OnReadHelpClicked" />
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- 状态显示 -->
+            <Border StrokeThickness="0"
+                    BackgroundColor="{AppThemeBinding Light=#FFF0C9, Dark=#312316}"
+                    Padding="12">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="8" />
+                </Border.StrokeShape>
+                <Label x:Name="HardwareStatusLabel"
+                       Text="Ready to explore world cuisines! 🌍"
+                       FontSize="13"
+                       TextColor="{AppThemeBinding Light=#A95517, Dark=#FFD18E}"
+                       HorizontalTextAlignment="Center" />
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

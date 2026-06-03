@@ -4,12 +4,47 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:FoodDrinkApp"
-    Shell.FlyoutBehavior="Disabled"
-    Title="FoodDrinkApp">
+    Title="Smart Recipe Explorer"
+    FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="#FFFFFF"
+    Shell.ForegroundColor="#00695C"
+    Shell.TitleColor="#00695C"
+    Shell.UnselectedColor="#80CBC4"
+    Shell.TabBarBackgroundColor="#FFFFFF"
+    Shell.TabBarForegroundColor="#00695C"
+    Shell.TabBarTitleColor="#00695C"
+    Shell.TabBarUnselectedColor="#B2DFDB">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-
+    <TabBar>
+        <ShellContent
+            Title="Explore"
+            Icon="🍽️"
+            ContentTemplate="{DataTemplate local:MainPage}"
+            Route="MainPage" />
+        <ShellContent
+            Title="Cuisines"
+            Icon="🌍"
+            ContentTemplate="{DataTemplate local:CategoriesPage}"
+            Route="CategoriesPage" />
+        <ShellContent
+            Title="Favorites"
+            Icon="💜"
+            ContentTemplate="{DataTemplate local:FavoritesPage}"
+            Route="FavoritesPage" />
+        <ShellContent
+            Title="Hardware"
+            Icon="🧭"
+            ContentTemplate="{DataTemplate local:HardwarePage}"
+            Route="HardwarePage" />
+        <ShellContent
+            Title="Stats"
+            Icon="📊"
+            ContentTemplate="{DataTemplate local:StatisticsPage}"
+            Route="StatisticsPage" />
+        <ShellContent
+            Title="Settings"
+            Icon="⚙️"
+            ContentTemplate="{DataTemplate local:SettingsPage}"
+            Route="SettingsPage" />
+    </TabBar>
 </Shell>
